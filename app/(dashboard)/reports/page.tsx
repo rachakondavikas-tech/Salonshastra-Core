@@ -1,0 +1,2 @@
+import PageShell from '@/components/PageShell';
+export default function ReportsPage(){return <PageShell title='Basic Reports' subtitle='MVP reporting snapshots.'><div className='card'><ul><li>Opportunity count by vertical</li><li>Activities done vs follow-ups pending</li><li>Services attached by business type</li><li>Open opportunities by team member</li></ul><p style={{color:'var(--muted)'}}>Advanced charts can be added in next iteration using materialized views or Supabase Edge Functions.</p></div></PageShell>}

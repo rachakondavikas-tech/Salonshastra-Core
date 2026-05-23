@@ -1,0 +1,5 @@
+'use client';
+import { FormEvent, useState } from 'react';
+import PageShell from '@/components/PageShell';
+import { useTable } from '@/lib/crudFactory';
+export default function ContactsPage(){const {rows,insert}=useTable('contacts');const[name,setName]=useState('');const[email,setEmail]=useState('');const submit=async(e:FormEvent)=>{e.preventDefault();await insert({name,email});setName('');setEmail('');};return <PageShell title='Contacts' subtitle='People across salon ecosystem.'><div className='card'><form className='row' onSubmit={submit}><input className='input' placeholder='Name' value={name} onChange={e=>setName(e.target.value)}/><input className='input' placeholder='Email' value={email} onChange={e=>setEmail(e.target.value)}/><button className='button'>Add</button></form></div><div className='card'><table className='table'><thead><tr><th>Name</th><th>Email</th></tr></thead><tbody>{rows.map(r=><tr key={r.id}><td>{r.name}</td><td>{r.email}</td></tr>)}</tbody></table></div></PageShell>}
