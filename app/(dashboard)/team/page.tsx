@@ -1,0 +1,5 @@
+'use client';
+import { FormEvent, useState } from 'react';
+import PageShell from '@/components/PageShell';
+import { useTable } from '@/lib/crudFactory';
+export default function TeamPage(){const{rows,insert}=useTable('team_assignments');const[member,setMember]=useState('');const[role,setRole]=useState('Relationship Manager');const submit=async(e:FormEvent)=>{e.preventDefault();await insert({team_member:member,role});setMember('');};return <PageShell title='Team Assignment' subtitle='Ownership mapping across relationships.'><div className='card'><form className='row' onSubmit={submit}><input className='input' placeholder='Team member' value={member} onChange={e=>setMember(e.target.value)}/><input className='input' placeholder='Role' value={role} onChange={e=>setRole(e.target.value)}/><button className='button'>Assign</button></form></div><div className='card'><table className='table'><thead><tr><th>Team Member</th><th>Role</th></tr></thead><tbody>{rows.map(r=><tr key={r.id}><td>{r.team_member}</td><td>{r.role}</td></tr>)}</tbody></table></div></PageShell>}
