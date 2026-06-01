@@ -63,3 +63,60 @@ create table if not exists team_assignments (
   role text not null,
   created_at timestamptz not null default now()
 );
+
+alter table contacts enable row level security;
+alter table businesses enable row level security;
+alter table contact_businesses enable row level security;
+alter table opportunities enable row level security;
+alter table activities enable row level security;
+alter table business_services enable row level security;
+alter table team_assignments enable row level security;
+
+create policy "Authenticated users can manage contacts"
+  on contacts
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage businesses"
+  on businesses
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage contact businesses"
+  on contact_businesses
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage opportunities"
+  on opportunities
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage activities"
+  on activities
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage business services"
+  on business_services
+  for all
+  to authenticated
+  using (true)
+  with check (true);
+
+create policy "Authenticated users can manage team assignments"
+  on team_assignments
+  for all
+  to authenticated
+  using (true)
+  with check (true);
